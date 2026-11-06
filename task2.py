@@ -85,13 +85,10 @@ class HtmlInvoiceExporter(InvoiceExporter):
 </div>"""
 
 class InvoiceProcessingService(ABC):
-    """
-    Базовий сервіс. Він виконує загальну бізнес-логіку (логування, надсилання),
-    але НЕ ЗНАЄ, який конкретно документ створюється.
-    """
+    
     @abstractmethod
     def create_exporter(self) -> InvoiceExporter:
-        """ЦЕ І Є ФАБРИЧНИЙ МЕТОД."""
+        
         pass
 
     def process_and_print(self, order: Order) -> None:
@@ -155,7 +152,7 @@ if __name__ == "__main__":
     order.add_item("Холодильник", 22000.0, 1)
     order.add_item("Набір посуду", 450.0, 2)
 
-    # Запускаємо різні сценарії:
+    
     FastPosTerminalService().process_and_print(order)
     ApiIntegrationService().process_and_print(order)
     EmailNotificationService().process_and_print(order)
